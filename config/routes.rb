@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api, :defaults => { :format => :json } do
     namespace :v1 do
+      post "/signup" => "auth#signup"
+      post "/login" => "auth#login"
+      post "/logout" => "auth#logout"
+
       get "/trains" => "trains#index", :as => :trains
       get "/trains/:train_number" => "trains#show", :as => :train
 
