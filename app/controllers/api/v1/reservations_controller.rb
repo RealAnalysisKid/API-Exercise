@@ -15,4 +15,31 @@ class Api::V1::ReservationsController < ApiController
     end
   end
 
+  def show
+    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+
+    render :json => {
+      :booking_code => @reservation.booking_code,
+      :train_number => @reservation.train.number,
+      :seat_number => @reservation.seat_number,
+      :customer_name => @reservation.customer_name,
+      :customer_phone => @reservation.customer_phone
+    }
+  end
+
+  def update
+    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+    @reservation.update( :customer_name => params[:customer_name],
+                         :customer_phone => params[:customer_phone] )
+
+    render :json => { :message => "更新成功" }
+  end
+
+  def destroy
+    @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
+    @reservation.destroy
+
+    render :json => { :message => "已取消预订" }
+  end
+
 end
