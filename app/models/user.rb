@@ -2,6 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
+  mount_uploader :avatar, AvatarUploader
+
   before_create :generate_authentication_token
 
   def generate_authentication_token
