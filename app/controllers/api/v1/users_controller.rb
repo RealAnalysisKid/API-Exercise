@@ -17,12 +17,12 @@ class Api::V1::UsersController < ApiController
     else
       render :json => { :message => "Failed", :errors => current_user.errors }, :status => 400
     end
+  end
 
-    protected
+  protected
 
-    def user_params
-      params.permit(:email, :password, :avatar)
-    end
+  def user_params
+    params.permit(:email, :password, :avatar)
   end
 
 end
