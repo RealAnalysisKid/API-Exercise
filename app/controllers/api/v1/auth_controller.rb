@@ -17,7 +17,7 @@ class Api::V1::AuthController < ApiController
       user = User.find_by_email( params[:email] )
     end
 
-    if user && user.valid_password?(params[:password])
+    if user && user.valid_password?( params[:password] )
       render :json => { :message => "Ok",
                         :auth_token => user.authentication_token,
                         :user_id => user.id }
