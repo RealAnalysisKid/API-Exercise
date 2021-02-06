@@ -55,7 +55,7 @@ RSpec.describe "API_V1::Reservations", :type => :request do
   end
 
 
-  describe "POST /api/v1/reservations" do
+  describe "POST /api/v1/reservations" do   #测试预订info录入路径 跟上面测试已预订info的案例不同哦
 
     example "success without auth_token" do
       post "/api/v1/reservations", :params => { :train_number => @train1.number, :seat_number => "1B",
@@ -97,5 +97,5 @@ RSpec.describe "API_V1::Reservations", :type => :request do
     end
 
   end
-  
+
 end
