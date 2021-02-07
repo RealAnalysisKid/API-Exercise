@@ -23,10 +23,13 @@ RSpec.describe "API_V1::Users", :type => :request do
   end
 
   it "PATCH /me" do
+    def file
+      {"image" => Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'files', 'image.png'), 'image/png')}
+    end
     # 上传档案，请放一个图档在 spec/fixtures 目录下
-    file = fixture_file_upload("#{Rails.root}/spec/fixtures/rails.png", "image/png")
+    #file = fixture_file_upload("#{Rails.root}/spec/fixtures/rails.png", "image/png")
 
-    patch "/api/v1/me", params: { :auth_token => @user.authentication_token, :email => "test2@example.com", :avatar => file }
+    patch "/api/v1/me", params: { :auth_token => @user.authentication_token, :email => "test2@example.com", :avatar => :file }
 
     expect(response).to have_http_status(200)
 
